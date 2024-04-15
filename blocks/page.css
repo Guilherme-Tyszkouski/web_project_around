@@ -1,0 +1,10 @@
+* {
+  font-family: "inter" Arial, sans-serif;
+}
+
+.page {
+  max-width: 1280px;
+  background-color: #000000;
+  color: #ffffff;
+  margin: 0 auto;
+}
