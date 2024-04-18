@@ -1,0 +1,6 @@
+.elements {
+  max-width: 880px;
+  border-radius: 10px 10px 0px 0px;
+  border: 1.5px solid #000000;
+  display: flex;
+}
