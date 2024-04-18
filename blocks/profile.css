@@ -5,6 +5,7 @@
   height: 120px;
   gap: 30px;
   margin: 0 auto;
+  margin: 40px auto 0;
 }
 
 .profile__image {
@@ -19,19 +20,24 @@
   font-size: 42px;
   line-height: 48px;
   overflow: hidden;
-
   text-overflow: ellipsis;
 }
 
 .profile__edit-button {
   width: 24px;
   height: 24px;
-
   border: 1px solid #ffffff;
   background-color: #000000;
 }
 
+.profile__edit-button:hover {
+  cursor: pointer;
+  opacity: 60%;
+}
+
 .profile__edit-button-img {
+  width: 10px;
+  height: 10px;
 }
 
 .profile__more {
@@ -49,6 +55,11 @@
   background-color: #000000;
 }
 
+.profile__add-image:hover {
+  cursor: pointer;
+  opacity: 60%;
+}
+
 .profile__information {
   display: flex;
   flex-direction: column;
@@ -60,6 +71,5 @@
 .profile__information-more {
   display: flex;
   align-items: center;
-
   gap: 18px;
 }
