@@ -28,6 +28,9 @@
   height: 24px;
   border: 1px solid #ffffff;
   background-color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .profile__edit-button:hover {
@@ -53,6 +56,9 @@
   border-radius: 2px;
   border: solid #ffffff;
   background-color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .profile__add-image:hover {
