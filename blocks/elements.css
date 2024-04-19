@@ -45,7 +45,6 @@
   font-weight: 900;
   line-height: 29.05px;
   color: #000000;
-
 }
 
 .element__card-like {
@@ -56,5 +55,4 @@
 .element__card-like:hover {
   opacity: 50%;
   cursor: pointer;
-
 }
