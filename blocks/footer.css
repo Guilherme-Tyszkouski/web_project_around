@@ -1,9 +1,11 @@
+.footer {
+  max-width: 880px;
+  margin: 67px auto 0;
+  padding: 0 0 60px 0;
+}
+
 .footer__copyright {
-  width: 318px;
-  height: 18px;
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 21.78px;
-  text-align: left;
   color: #545454;
+  font-size: 18px;
+  line-height: 21.78px;
 }
