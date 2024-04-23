@@ -17,7 +17,7 @@
     <div class="page">
       <header class="header">
         <img
-          src="./images/header-logo.svg"
+          src="./images/images-header/header-logo.svg"
           alt="imagem escrita Around The U.S"
           class="header_logo"
         />
@@ -25,7 +25,7 @@
       <main class="content">
         <section class="profile">
           <img
-            src="./images/profile-image.jpg"
+            src="./images/images-profile/profile-image.jpg"
             alt="Imagem do explorador Jacques Consteau"
             class="profile__image"
           />
@@ -34,7 +34,7 @@
               <h1 class="profile__name">Jacques Consteau</h1>
               <button class="profile__edit-button">
                 <img
-                  src="./images/profile-image-edit.svg"
+                  src="./images/images-profile/profile-image-edit.svg"
                   alt="imagem de um lapis"
                   class="profile__edit-button-img"
                 />
@@ -44,7 +44,7 @@
           </div>
           <button class="profile__add-image">
             <img
-              src="./images/profile-add-image.svg"
+              src="./images/images-profile/profile-add-image.svg"
               alt="imagem com um simbolo de mais "
             />
           </button>
@@ -53,14 +53,14 @@
           <ul class="elements__cards">
             <li class="element__card">
               <img
-                src=".//images/elements-image-1.png"
+                src="./images/images-elements/elements-image-1.png"
                 alt="Rio passando no meio de arvores"
                 class="element__card-img"
               />
               <div class="element__card-info">
                 <p class="element__card_name">Vale de Yosemite</p>
                 <img
-                  src=".//images/elements-like.svg"
+                  src="./images/images-elements/elements-like.svg"
                   alt="Imagem de um coração"
                   class="element__card-like"
                 />
@@ -68,14 +68,14 @@
             </li>
             <li class="element__card">
               <img
-                src="./images/elements-image-2.png"
+                src="./images/images-elements/elements-image-2.png"
                 alt="lago no meio de Montanhas"
                 class="element__card-img"
               />
               <div class="element__card-info">
                 <p class="element__card_name">Lago Louise</p>
                 <img
-                  src=".//images/elements-like.svg"
+                  src="./images/images-elements/elements-like.svg"
                   alt="imagem de um coracao"
                   class="element__card-like"
                 />
@@ -83,14 +83,14 @@
             </li>
             <li class="element__card">
               <img
-                src="./images/elements-image-3.png"
+                src="./images/images-elements/elements-image-3.png"
                 alt="Por do sol em altas montanhas"
                 class="element__card-img"
               />
               <div class="element__card-info">
                 <p class="element__card_name">Montanhas Care...</p>
                 <img
-                  src=".//images/elements-like.svg"
+                  src="./images/images-elements/elements-like.svg"
                   alt="imagem de um coracao"
                   class="element__card-like"
                 />
@@ -98,14 +98,14 @@
             </li>
             <li class="element__card">
               <img
-                src="./images/elements-image-4.png"
+                src="./images/images-elements/elements-image-4.png"
                 alt="Céu estrelado com montanhas cobertas de neve"
                 class="element__card-img"
               />
               <div class="element__card-info">
                 <p class="element__card_name">Latemar</p>
                 <img
-                  src=".//images/elements-like.svg"
+                  src="./images/images-elements/elements-like.svg"
                   alt="imagem de um coracao"
                   class="element__card-like"
                 />
@@ -113,14 +113,14 @@
             </li>
             <li class="element__card">
               <img
-                src="./images/elements-image-5.png"
+                src="./images/images-elements/elements-image-5.png"
                 alt="Lago com montanhas com neve no topo"
                 class="element__card-img"
               />
               <div class="element__card-info">
                 <p class="element__card_name">Parque Nacional...</p>
                 <img
-                  src=".//images/elements-like.svg"
+                  src="./images/images-elements/elements-like.svg"
                   alt="imagem de um coracao"
                   class="element__card-like"
                 />
@@ -128,14 +128,14 @@
             </li>
             <li class="element__card">
               <img
-                src="./images/elements-image-6.png"
+                src="./images/images-elements/elements-image-6.png"
                 alt="Altas montanhas com um lago, com uma ponte e varios barcos de madeira"
                 class="element__card-img"
               />
               <div class="element__card-info">
                 <p class="element__card_name">Lago di Braies</p>
                 <img
-                  src=".//images/elements-like.svg"
+                  src="./images/images-elements/elements-like.svg"
                   alt="imagem de um coracao"
                   class="element__card-like"
                 />
@@ -148,8 +148,34 @@
         <p class="footer__copyright">&copy; 2024 Around The U.S.</p>
       </footer>
     </div>
-    <div>
-      <button></button>
+    <div class="edit">
+      <div class="edit__profile">
+        <button class="edit__button-close">
+          <img
+            src="./images/images-edit/edit-close Icon.svg"
+            alt="icone de um x"
+            class="edit__close"
+          />
+        </button>
+        <h2 class="edit__title">Editar Perfil</h2>
+        <form class="form">
+          <fieldset class="form__fieldset">
+            <input
+              type="text"
+              class="form__input form__input_name"
+              id="name"
+              placeholder="Jacques Consteau"
+            />
+            <input
+              type="text"
+              class="form__input form__input_about"
+              id="about"
+              placeholder="Explorador"
+            />
+          </fieldset>
+          <button type="submit" class="form__submit">Salvar</button>
+        </form>
+      </div>
     </div>
   </body>
 </html>
