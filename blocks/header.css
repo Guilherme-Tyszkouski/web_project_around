@@ -15,11 +15,11 @@
   .header__logo {
     width: 126px;
     height: 24px;
-    margin: 0 0 0 27px;
+
   }
 
   .header {
     margin: 28px auto 0;
-    padding: 0;
+    padding: 0 28px;
   }
 }
