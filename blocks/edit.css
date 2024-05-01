@@ -4,11 +4,7 @@
   background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 100%;
-  /*display: none;*/
-}
-
-.edit_visible {
-  display: block;
+  display: none;
 }
 
 .edit__profile {

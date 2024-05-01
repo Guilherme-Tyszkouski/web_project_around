@@ -9,6 +9,8 @@
   flex-wrap: wrap;
   list-style: none;
   gap: 20px 17px;
+  justify-content: center;
+
 }
 
 .element__card {

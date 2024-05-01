@@ -27,11 +27,12 @@
   margin: 29.74px 0 0;
 }
 
-.foorm__input {
+.form__input {
   width: 100%;
   border: none;
   border-bottom: solid 1px rgba(0, 0, 0, 0.2);
   padding: 0 0 10.26px;
   font-size: 14px;
   line-height: 16.94px;
+  color: #000000;
 }

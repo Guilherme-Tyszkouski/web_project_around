@@ -9,3 +9,9 @@
   font-size: 18px;
   line-height: 21.78px;
 }
+
+@media screen and (max-width: 440px) {
+   .footer {
+    padding: 0 19px 60px 19px;
+  }
+}
