@@ -13,8 +13,31 @@ function handeleProfileFormSubmit(event) {
   const isEmptyJobInputValue = jobInputValue.length === 0;
 
   if (isEmptyNameInputValue || isEmptyJobInputValue) {
-    alert('Preencha todos os campos!');
+    alert("Preencha todos os campos!");
     return;
-
   }
+
+  const profileName = document.querySelector(".profile__name");
+  profileName.textContent = nameInputValue;
+
+  const profileMore = document.querySelector(".profile__more");
+  profileMore.textContent = jobInputValue;
+
+  alert("Dados editados com sucesso!");
+  nameInput.value = "";
+  jobInput.value = "";
+  DOM_editForm.classList.remove("edit__visible");
 }
+
+DOM_formElement.addEventListener("submit", (event) =>
+  handleProfileFormSubmit(event)
+);
+
+DOM_editButtonProfile.addEventListener("click", () => {
+  DOM_editForm.classList.add("edit__visible");
+});
+
+DOM_closeButtonProfile.addEventListener("click", () => {
+  DOM_editForm.classList.remove("edit__visible");
+});
+
