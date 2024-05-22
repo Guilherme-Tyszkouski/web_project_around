@@ -7,6 +7,10 @@
   display: none;
 }
 
+.edit__visible{
+  display: block;
+}
+
 .edit__profile {
   background-color: #fff;
   max-width: 430px;
