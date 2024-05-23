@@ -48,12 +48,12 @@
   color: #000000;
 }
 
-.elements__card_button {
+.elements__card-button {
   width: 21px;
   height: 19px;
 }
 
-.elements__card_button:hover {
+.elements__card-button:hover {
   opacity: 50%;
   cursor: pointer;
 }
