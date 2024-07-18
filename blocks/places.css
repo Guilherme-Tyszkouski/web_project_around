@@ -1,17 +1,17 @@
-.edit {
+.places {
   position: fixed;
   top: 0;
   background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 100%;
-  display: none;
+display: none;
 }
 
-.edit__visible {
+.places__visible {
   display: block;
 }
 
-.edit__profile {
+.places__profile {
   background-color: #fff;
   max-width: 430px;
   max-height: 330px;
@@ -24,7 +24,7 @@
   position: relative;
 }
 
-.edit__button-close {
+.places__profile_button-close {
   border: none;
   background-color: transparent;
   position: absolute;
@@ -34,17 +34,17 @@
   right: -36px;
 }
 
-.edit__button-close:hover {
+.places__profile_button-close:hover {
   cursor: pointer;
   opacity: 60%;
 }
 
-.edit__close {
+.places__close {
   width: 32px;
   height: 32px;
 }
 
-.edit__title {
+.places__title {
   color: #000000;
   font-size: 24px;
   line-height: 29.05px;
@@ -52,16 +52,16 @@
 }
 
 @media screen and (max-width: 510px) {
-  .edit__profile {
+  .places__profile {
     max-width: 282px;
     max-height: 322px;
   }
-  .edit__close {
+  .places__close {
     width: 26px;
     height: 26px;
   }
 
-  .edit__button-close{
+  .places__profile_button-close {
     top: -46px;
     right: 6px;
   }
