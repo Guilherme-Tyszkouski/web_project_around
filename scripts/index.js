@@ -2,33 +2,38 @@ const DOM_editButtonProfile = document.querySelector(".profile__edit-button");
 const DOM_closeButtonProfile = document.querySelector(".edit__button-close");
 const DOM_editForm = document.querySelector(".edit");
 const DOM_formElement = document.querySelector(".form");
+
+const DOM_editButtonPlaces = document.querySelector(".profile__add-image");
+const DOM_closeButtonPlaces = document.querySelector(".places__close");
+const DOM_placesForm = document.querySelector(".places");
+const DOM_placesFormElement = document.querySelector(".places__form");
+
 const DOM_initialCards = [
   {
     name: "Vale de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg"
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
   },
   {
     name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg"
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
   },
   {
     name: "Montanhas Carecas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg"
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg",
   },
   {
     name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg"
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg",
   },
   {
     name: "Parque Nacional da Vanoise ",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg"
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg",
   },
   {
     name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg"
-  }
+    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
+  },
 ];
-
 
 function handleProfileFormSubmit(event) {
   event.preventDefault();
@@ -56,6 +61,8 @@ function handleProfileFormSubmit(event) {
   DOM_editForm.classList.remove("edit__visible");
 }
 
+// Modal Section Profile
+
 DOM_formElement.addEventListener("submit", (event) =>
   handleProfileFormSubmit(event)
 );
@@ -67,4 +74,16 @@ DOM_editButtonProfile.addEventListener("click", () => {
 DOM_closeButtonProfile.addEventListener("click", () => {
   DOM_editForm.classList.remove("edit__visible");
 });
+
+//Modal section places
+
+DOM_editButtonPlaces.addEventListener("click", () => {
+  DOM_placesForm.classList.add("places__visible");
+});
+
+
+DOM_closeButtonPlaces.addEventListener("click", () => {
+  DOM_placesForm.classList.remove("places__visible");
+});
+
 
