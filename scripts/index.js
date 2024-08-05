@@ -9,6 +9,9 @@ const DOM_placesForm = document.querySelector(".places");
 const DOM_placesFormElement = document.querySelector(".places__form");
 const DOM_elementsCards = document.querySelector(".elements__cards");
 const DOM_buttonAddImage = document.querySelector("[data-button=add-image]");
+const DOM_buttonTrashImage = document.querySelector(
+  ".elements__card-button-trash"
+);
 
 const DOM_initialCards = [
   {
@@ -81,6 +84,14 @@ function createCards() {
     img_tag.setAttribute("alt", obj.alt);
     img_tag.classList.add("elements__card-image");
 
+    const imgTrash_tag = document.createElement("img");
+    imgTrash_tag.setAttribute(
+      "src",
+      "../images/images-elements/elements-trash.svg"
+    );
+    imgTrash_tag.setAttribute("alt", obj.alt);
+    imgTrash_tag.classList.add("elements__card-button-trash");
+
     const div_tag = document.createElement("div");
     div_tag.classList.add("elements__card-info");
 
@@ -96,8 +107,10 @@ function createCards() {
     imgLike_tag.setAttribute("alt", obj.alt);
     imgLike_tag.classList.add("elements__card-button");
 
+
     li_tag.appendChild(img_tag);
     li_tag.appendChild(div_tag);
+    li_tag.appendChild(imgTrash_tag);
     div_tag.appendChild(p_tag);
     div_tag.appendChild(imgLike_tag);
 
@@ -148,6 +161,14 @@ function createCard() {
 
 DOM_buttonAddImage.addEventListener("click", (event) => createCard(event));
 
+//Botao excluir imagem
+
+// DOM_buttonTrashImage.addEventListener("click", (event) => {
+
+// });
+
+
+
 // Modal Section Profile
 
 DOM_formElement.addEventListener("submit", (event) =>
@@ -161,6 +182,7 @@ DOM_editButtonProfile.addEventListener("click", () => {
 DOM_closeButtonProfile.addEventListener("click", () => {
   DOM_editForm.classList.remove("edit__visible");
 });
+
 
 //Modal section places
 
