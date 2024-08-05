@@ -57,3 +57,14 @@
   opacity: 50%;
   cursor: pointer;
 }
+
+.elements__card-button-trash {
+  width: 18px;
+  height: 19.3px;
+  /* z-index: 1; */
+}
+
+.elements__card-button-trash:hover {
+  opacity: 50%;
+  cursor: pointer;
+}
