@@ -19,31 +19,37 @@ const DOM_initialCards = [
     name: "Vale de Yosemite",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
     alt: "Rio passando no meio de arvores",
+    trash: "../images/images-elements/elements-trash.svg",
   },
   {
     name: "Lago Louise",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
     alt: "lago no meio de Montanhas",
+    trash: "../images/images-elements/elements-trash.svg",
   },
   {
     name: "Montanhas Carecas",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg",
     alt: "Por do sol em altas montanhas",
+    trash: "../images/images-elements/elements-trash.svg",
   },
   {
     name: "Latemar",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg",
     alt: "Céu estrelado com montanhas cobertas de neve",
+    trash: "../images/images-elements/elements-trash.svg",
   },
   {
     name: "Parque Nacional da Vanoise ",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg",
     alt: "Lago com montanhas com neve no topo",
+    trash: "../images/images-elements/elements-trash.svg",
   },
   {
     name: "Lago di Braies",
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
     alt: "Altas montanhas com um lago, com uma ponte e varios barcos de madeira",
+    trash: "../images/images-elements/elements-trash.svg",
   },
 ];
 
@@ -86,10 +92,7 @@ function createCards() {
     img_tag.classList.add("elements__card-image");
 
     const imgTrash_tag = document.createElement("img");
-    imgTrash_tag.setAttribute(
-      "src",
-      "../images/images-elements/elements-trash.svg"
-    );
+    imgTrash_tag.setAttribute("src", obj.trash);
     imgTrash_tag.setAttribute("alt", obj.alt);
     imgTrash_tag.classList.add("elements__card-button-trash");
 
@@ -177,9 +180,6 @@ DOM_buttonAddImage.addEventListener("click", (event) => createCard(event));
 // DOM_buttonLikedImage.addEventListener("click", () => {
 //   classList.remove(".elements__card-button:active");
 // });
-
-
-
 
 // Modal Section Profile
 
