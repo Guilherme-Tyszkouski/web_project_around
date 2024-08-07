@@ -10,9 +10,7 @@ const DOM_placesFormElement = document.querySelector(".places__form");
 const DOM_elementsCards = document.querySelector(".elements__cards");
 const DOM_buttonAddImage = document.querySelector("[data-button=add-image]");
 const DOM_buttonLikedImage = document.querySelector(".elements__card-button");
-const DOM_buttonTrashImage = document.querySelector(
-  ".elements__card-button-trash"
-);
+//const DOM_buttonTrashImage = document.querySelector(".elements__card-button-trash");
 
 const DOM_initialCards = [
   {
@@ -82,9 +80,10 @@ function handleProfileFormSubmit(event) {
 //funcao que carrega as imagens inicias
 
 function createCards() {
-  DOM_initialCards.forEach((obj) => {
+  DOM_initialCards.forEach((obj, index) => {
     const li_tag = document.createElement("li");
     li_tag.classList.add("elements__card");
+    li_tag.setAttribute("data-id", index);
 
     const img_tag = document.createElement("img");
     img_tag.setAttribute("src", obj.link);
@@ -94,6 +93,7 @@ function createCards() {
     const imgTrash_tag = document.createElement("img");
     imgTrash_tag.setAttribute("src", obj.trash);
     imgTrash_tag.setAttribute("alt", obj.alt);
+    imgTrash_tag.setAttribute("data-id", index);
     imgTrash_tag.classList.add("elements__card-button-trash");
 
     const div_tag = document.createElement("div");
@@ -166,20 +166,11 @@ DOM_buttonAddImage.addEventListener("click", (event) => createCard(event));
 
 //Botao excluir imagem
 
-// DOM_buttonTrashImage.addEventListener("click", function () {
-//   const listItem = DOM_buttonTrashImage.closest(".elements__card-button-trash");
-//   listItem.remove()
-// });
+
 
 // Botao dar Like images
 
-// DOM_buttonLikedImage.addEventListener("click", () => {
-//   classList.add(".elements__card-button:active");
-// });
 
-// DOM_buttonLikedImage.addEventListener("click", () => {
-//   classList.remove(".elements__card-button:active");
-// });
 
 // Modal Section Profile
 
@@ -204,5 +195,24 @@ DOM_editButtonPlaces.addEventListener("click", () => {
 DOM_closeButtonPlaces.addEventListener("click", () => {
   DOM_placesForm.classList.remove("places__visible");
 });
+
+// Event listener para detectar clique em qualquer lugar do documento
+
+window.addEventListener("click", (event) => {
+  const target = event.target;
+
+  if (!(target.className === "elements__card-button-trash")) return;
+
+  const altAttributeTarget = target.getAttribute("alt");
+
+  const cards = document.querySelectorAll(".elements__card");
+
+  cards.forEach((li) => {
+    if (li.childNodes.item('img').getAttribute("alt") === altAttributeTarget) {
+      li.remove();
+    }
+  });
+});
+// Carregar as imagens iniciais ao carregar a página
 
 window.addEventListener("DOMContentLoaded", createCards);
