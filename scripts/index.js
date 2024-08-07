@@ -9,6 +9,7 @@ const DOM_placesForm = document.querySelector(".places");
 const DOM_placesFormElement = document.querySelector(".places__form");
 const DOM_elementsCards = document.querySelector(".elements__cards");
 const DOM_buttonAddImage = document.querySelector("[data-button=add-image]");
+const DOM_buttonLikedImage = document.querySelector(".elements__card-button");
 const DOM_buttonTrashImage = document.querySelector(
   ".elements__card-button-trash"
 );
@@ -107,7 +108,6 @@ function createCards() {
     imgLike_tag.setAttribute("alt", obj.alt);
     imgLike_tag.classList.add("elements__card-button");
 
-
     li_tag.appendChild(img_tag);
     li_tag.appendChild(div_tag);
     li_tag.appendChild(imgTrash_tag);
@@ -163,9 +163,21 @@ DOM_buttonAddImage.addEventListener("click", (event) => createCard(event));
 
 //Botao excluir imagem
 
-// DOM_buttonTrashImage.addEventListener("click", (event) => {
-
+// DOM_buttonTrashImage.addEventListener("click", function () {
+//   const listItem = DOM_buttonTrashImage.closest(".elements__card-button-trash");
+//   listItem.remove()
 // });
+
+// Botao dar Like images
+
+// DOM_buttonLikedImage.addEventListener("click", () => {
+//   classList.add(".elements__card-button:active");
+// });
+
+// DOM_buttonLikedImage.addEventListener("click", () => {
+//   classList.remove(".elements__card-button:active");
+// });
+
 
 
 
@@ -182,7 +194,6 @@ DOM_editButtonProfile.addEventListener("click", () => {
 DOM_closeButtonProfile.addEventListener("click", () => {
   DOM_editForm.classList.remove("edit__visible");
 });
-
 
 //Modal section places
 

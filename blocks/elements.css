@@ -58,6 +58,12 @@
   cursor: pointer;
 }
 
+
+.elements__card-button:active {
+  background-image: url(../images/images-elements/elements-like-active.svg) center no-repeat;
+}
+
+
 .elements__card-button-trash {
   width: 18px;
   height: 19.3px;
