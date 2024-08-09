@@ -10,7 +10,7 @@ const DOM_placesFormElement = document.querySelector(".places__form");
 const DOM_elementsCards = document.querySelector(".elements__cards");
 const DOM_buttonAddImage = document.querySelector("[data-button=add-image]");
 const DOM_buttonLikedImage = document.querySelector(".elements__card-button");
-//const DOM_buttonTrashImage = document.querySelector(".elements__card-button-trash");
+
 
 const DOM_initialCards = [
   {
@@ -79,6 +79,16 @@ function handleProfileFormSubmit(event) {
 
 //funcao que carrega as imagens inicias
 
+function* generateIdCards() {
+  let id = 0;
+  while (true) {
+    yield id;
+    id += 1;
+  }
+}
+
+const iteradorId = generateIdCards();
+
 function createCards() {
   DOM_initialCards.forEach((obj, index) => {
     const li_tag = document.createElement("li");
@@ -93,7 +103,6 @@ function createCards() {
     const imgTrash_tag = document.createElement("img");
     imgTrash_tag.setAttribute("src", obj.trash);
     imgTrash_tag.setAttribute("alt", obj.alt);
-    imgTrash_tag.setAttribute("data-id", index);
     imgTrash_tag.classList.add("elements__card-button-trash");
 
     const div_tag = document.createElement("div");
@@ -109,56 +118,88 @@ function createCards() {
       "../images/images-elements/elements-like.svg"
     );
     imgLike_tag.setAttribute("alt", obj.alt);
+    imgLike_tag.setAttribute("data-id", iteradorId.next().value);
+    imgLike_tag.setAttribute("like-states", "inactive");
     imgLike_tag.classList.add("elements__card-button");
 
     li_tag.appendChild(img_tag);
-    li_tag.appendChild(div_tag);
     li_tag.appendChild(imgTrash_tag);
-    div_tag.appendChild(p_tag);
-    div_tag.appendChild(imgLike_tag);
-
-    DOM_elementsCards.appendChild(li_tag);
-    console.log(DOM_elementsCards);
-  });
-}
-
-//funcao pra alterar imagem do site
-
-function createCard() {
-  event.preventDefault();
-  DOM_initialCards.forEach((obj) => {
-    const li_tag = document.createElement("li");
-    li_tag.classList.add("elements__card");
-
-    const img_tag = document.createElement("img");
-    img_tag.setAttribute("src", obj.link);
-    img_tag.setAttribute("alt", obj.alt);
-    img_tag.classList.add("elements__card-image");
-
-    const div_tag = document.createElement("div");
-    div_tag.classList.add("elements__card-info");
-
-    const p_tag = document.createElement("p");
-    p_tag.classList.add("elements__card-name");
-    p_tag.textContent = obj.name;
-
-    const imgLike_tag = document.createElement("img");
-    imgLike_tag.setAttribute(
-      "src",
-      "../images/images-elements/elements-like.svg"
-    );
-    imgLike_tag.setAttribute("alt", obj.alt);
-    imgLike_tag.classList.add("elements__card-button");
-
-    li_tag.appendChild(img_tag);
     li_tag.appendChild(div_tag);
     div_tag.appendChild(p_tag);
     div_tag.appendChild(imgLike_tag);
 
     DOM_elementsCards.appendChild(li_tag);
-    console.log(DOM_elementsCards);
   });
 }
+
+// function createCard() {
+//   event.preventDefault();
+//   DOM_initialCards.forEach((obj) => {
+//     const li_tag = document.createElement("li");
+//     li_tag.classList.add("elements__card");
+
+//     const img_tag = document.createElement("img");
+//     img_tag.setAttribute("src", obj.link);
+//     img_tag.setAttribute("alt", obj.alt);
+//     img_tag.classList.add("elements__card-image");
+
+//     const div_tag = document.createElement("div");
+//     div_tag.classList.add("elements__card-info");
+
+//     const p_tag = document.createElement("p");
+//     p_tag.classList.add("elements__card-name");
+//     p_tag.textContent = obj.name;
+
+//     const imgLike_tag = document.createElement("img");
+//     imgLike_tag.setAttribute(
+//       "src",
+//       "../images/images-elements/elements-like.svg"
+//     );
+//     imgLike_tag.setAttribute("alt", obj.alt);
+//     imgLike_tag.classList.add("elements__card-button");
+
+//     li_tag.appendChild(img_tag);
+//     li_tag.appendChild(div_tag);
+//     div_tag.appendChild(p_tag);
+//     div_tag.appendChild(imgLike_tag);
+
+//     DOM_elementsCards.appendChild(li_tag);
+//     console.log(DOM_elementsCards);
+//   });
+// }
+
+const removeImage = (target) => {
+  if (!(target.className === "elements__card-button-trash")) return;
+
+  const altAttributeTarget = target.getAttribute("alt");
+
+  const cards = document.querySelectorAll(".elements__card");
+
+  cards.forEach((li) => {
+    if (li.childNodes.item("img").getAttribute("alt") === altAttributeTarget) {
+      li.remove();
+    }
+  });
+};
+
+const likeImage = (target) => {
+  const clikedTargetId = target.dataset.id;
+  const likes = document.querySelectorAll("[data-id]");
+  likes.forEach((like) => {
+    if (like.dataset.id === clikedTargetId) {
+      if (like.getAttribute("like-states") === "inactive") {
+        like.setAttribute(
+          "src",
+          "../images/images-elements/elements-like-active.svg"
+        );
+        like.setAttribute("like-states", "active");
+      } else {
+        like.setAttribute("src", "../images/images-elements/elements-like.svg");
+        like.setAttribute("like-states", "inactive");
+      }
+    }
+  });
+};
 
 //Botao adicionar imagem
 
@@ -166,11 +207,7 @@ DOM_buttonAddImage.addEventListener("click", (event) => createCard(event));
 
 //Botao excluir imagem
 
-
-
 // Botao dar Like images
-
-
 
 // Modal Section Profile
 
@@ -200,19 +237,10 @@ DOM_closeButtonPlaces.addEventListener("click", () => {
 
 window.addEventListener("click", (event) => {
   const target = event.target;
-
-  if (!(target.className === "elements__card-button-trash")) return;
-
-  const altAttributeTarget = target.getAttribute("alt");
-
-  const cards = document.querySelectorAll(".elements__card");
-
-  cards.forEach((li) => {
-    if (li.childNodes.item('img').getAttribute("alt") === altAttributeTarget) {
-      li.remove();
-    }
-  });
+  removeImage(target);
+  likeImage(target);
 });
+
 // Carregar as imagens iniciais ao carregar a página
 
 window.addEventListener("DOMContentLoaded", createCards);
