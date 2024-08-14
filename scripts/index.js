@@ -205,9 +205,6 @@ const likeImage = (target) => {
 
 DOM_buttonAddImage.addEventListener("click", (event) => createCard(event));
 
-//Botao excluir imagem
-
-// Botao dar Like images
 
 // Modal Section Profile
 
@@ -223,7 +220,6 @@ DOM_closeButtonProfile.addEventListener("click", () => {
   DOM_editForm.classList.remove("edit__visible");
 });
 
-//Modal section places
 
 DOM_editButtonPlaces.addEventListener("click", () => {
   DOM_placesForm.classList.add("places__visible");
