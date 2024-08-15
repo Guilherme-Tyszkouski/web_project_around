@@ -89,6 +89,8 @@ function* generateIdCards() {
 
 const iteradorId = generateIdCards();
 
+// Função que cria os cartoes inicias da pagina
+
 function createCards() {
   DOM_initialCards.forEach((obj, index) => {
     const li_tag = document.createElement("li");
