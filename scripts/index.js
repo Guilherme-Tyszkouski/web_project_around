@@ -11,7 +11,6 @@ const DOM_elementsCards = document.querySelector(".elements__cards");
 const DOM_buttonAddImage = document.querySelector("[data-button=add-image]");
 const DOM_buttonLikedImage = document.querySelector(".elements__card-button");
 
-
 const DOM_initialCards = [
   {
     name: "Vale de Yosemite",
@@ -51,6 +50,7 @@ const DOM_initialCards = [
   },
 ];
 
+//funcao do pop up
 function handleProfileFormSubmit(event) {
   event.preventDefault();
   const nameInput = document.querySelector(".form__input_name");
@@ -92,6 +92,8 @@ const iteradorId = generateIdCards();
 // Função que cria os cartoes inicias da pagina
 
 function createCards() {
+  DOM_elementsCards.innerHTML = "";
+
   DOM_initialCards.forEach((obj, index) => {
     const li_tag = document.createElement("li");
     li_tag.classList.add("elements__card");
@@ -133,42 +135,22 @@ function createCards() {
     DOM_elementsCards.appendChild(li_tag);
   });
 }
+for (const creator of DOM_initialCards) {
+  createCards(creator);
+}
 
-// function createCard() {
-//   event.preventDefault();
-//   DOM_initialCards.forEach((obj) => {
-//     const li_tag = document.createElement("li");
-//     li_tag.classList.add("elements__card");
+const creatNewCard = {
+  name: "",
+  link: "",
+  alt: "",
+  trash: "../images/images-elements/elements-trash.svg",
+};
+createCards(creatNewCard);
 
-//     const img_tag = document.createElement("img");
-//     img_tag.setAttribute("src", obj.link);
-//     img_tag.setAttribute("alt", obj.alt);
-//     img_tag.classList.add("elements__card-image");
 
-//     const div_tag = document.createElement("div");
-//     div_tag.classList.add("elements__card-info");
 
-//     const p_tag = document.createElement("p");
-//     p_tag.classList.add("elements__card-name");
-//     p_tag.textContent = obj.name;
 
-//     const imgLike_tag = document.createElement("img");
-//     imgLike_tag.setAttribute(
-//       "src",
-//       "../images/images-elements/elements-like.svg"
-//     );
-//     imgLike_tag.setAttribute("alt", obj.alt);
-//     imgLike_tag.classList.add("elements__card-button");
-
-//     li_tag.appendChild(img_tag);
-//     li_tag.appendChild(div_tag);
-//     div_tag.appendChild(p_tag);
-//     div_tag.appendChild(imgLike_tag);
-
-//     DOM_elementsCards.appendChild(li_tag);
-//     console.log(DOM_elementsCards);
-//   });
-// }
+// Remover e dar like nas imagens
 
 const removeImage = (target) => {
   if (!(target.className === "elements__card-button-trash")) return;
@@ -207,7 +189,6 @@ const likeImage = (target) => {
 
 DOM_buttonAddImage.addEventListener("click", (event) => createCard(event));
 
-
 // Modal Section Profile
 
 DOM_formElement.addEventListener("submit", (event) =>
@@ -221,7 +202,6 @@ DOM_editButtonProfile.addEventListener("click", () => {
 DOM_closeButtonProfile.addEventListener("click", () => {
   DOM_editForm.classList.remove("edit__visible");
 });
-
 
 DOM_editButtonPlaces.addEventListener("click", () => {
   DOM_placesForm.classList.add("places__visible");
