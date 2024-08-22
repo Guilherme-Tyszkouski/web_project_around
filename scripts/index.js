@@ -11,6 +11,11 @@ const DOM_elementsCards = document.querySelector(".elements__cards");
 const DOM_buttonAddImage = document.querySelector("[data-button=add-image]");
 const DOM_buttonLikedImage = document.querySelector(".elements__card-button");
 
+const DOM_openExpanded = document.querySelector(".expanded"); // div grande
+const DOM_buttonCLoseExpandedImage = document.querySelector(".expanded__close"); //botao close
+const DOM_cardImages = document.querySelector(".elements__card-image"); // imagem cd cartao
+const DOM_expandedImage = document.querySelector(".expanded__image-open"); // imagem grande
+
 const DOM_initialCards = [
   {
     name: "Vale de Yosemite",
@@ -135,17 +140,26 @@ function createCards() {
     DOM_elementsCards.appendChild(li_tag);
   });
 }
-for (const creator of DOM_initialCards) {
-  createCards(creator);
-}
 
-const creatNewCard = {
-  name: "",
-  link: "",
-  alt: "",
-  trash: "../images/images-elements/elements-trash.svg",
-};
-createCards(creatNewCard);
+function handlePlacesFormAddCard(event) {
+  event.preventDefault();
+  const newLinkInput = document.getElementById("newcardlink");
+  const newNameInput = document.getElementById("newcardname");
+
+  const newLinkInputValue = newLinkInput.value.trim();
+  const newNameInputValue = newNameInput.value.trim();
+
+  const isEmptyNewLinkInputValue = newLinkInputValue.length === 0;
+  const isEmptyNewNameInputValue = newNameInputValue.length === 0;
+
+
+  if (isEmptyNewNameInputValue || isEmptyNewLinkInputValue) {
+    alert("Preencha todos os campos!");
+    return;
+  }
+
+  DOM_placesForm.classList.remove("places__visible");
+}
 
 
 
@@ -187,12 +201,16 @@ const likeImage = (target) => {
 
 //Botao adicionar imagem
 
-DOM_buttonAddImage.addEventListener("click", (event) => createCard(event));
+// DOM_buttonAddImage.addEventListener("click", (event) => creatNewCard(event));
 
 // Modal Section Profile
 
 DOM_formElement.addEventListener("submit", (event) =>
   handleProfileFormSubmit(event)
+);
+
+DOM_placesForm.addEventListener("submit", (event) =>
+  handlePlacesFormAddCard(event)
 );
 
 DOM_editButtonProfile.addEventListener("click", () => {
@@ -210,6 +228,13 @@ DOM_editButtonPlaces.addEventListener("click", () => {
 DOM_closeButtonPlaces.addEventListener("click", () => {
   DOM_placesForm.classList.remove("places__visible");
 });
+
+
+DOM_buttonCLoseExpandedImage.addEventListener("click", () => {
+  DOM_expandedImage.classList.remove("expanded__visible");
+});
+
+
 
 // Event listener para detectar clique em qualquer lugar do documento
 

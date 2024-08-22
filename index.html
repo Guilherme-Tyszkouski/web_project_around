@@ -205,7 +205,12 @@
               placeholder="Link de imagem"
             />
           </fieldset>
-          <button type="submit" class="form__submit" id="addCardButton" data-button="add-image">
+          <button
+            type="submit"
+            class="form__submit"
+            id="addCardButton"
+            data-button="add-image"
+          >
             Salvar
           </button>
         </form>
@@ -213,14 +218,21 @@
     </div>
     <div class="expanded">
       <div class="expanded__image">
-        <img src="" alt="Imagem Expandida" id="imageexpanded" />
+        <img
+          class="expanded__image-open"
+          src=""
+          alt="Imagem Expandida"
+          id="imageexpanded"
+        />
       </div>
       <img
         class="expanded__close"
         src="./images/images-expanded/expanded-close-Icon.svg"
         alt="Icone de um x"
       />
-      <p class="expanded__info">Guilherme</p>
+      <div class="expanded__paragraph">
+        <p class="expanded__paragraph-info">Guilherme</p>
+      </div>
     </div>
   </body>
 </html>
