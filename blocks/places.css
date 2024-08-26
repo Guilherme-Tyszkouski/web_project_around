@@ -4,12 +4,18 @@
   background-color: rgba(0, 0, 0, 0.5);
   width: 100%;
   height: 100%;
-  display: none;
+  
+  visibility: hidden;
+  opacity: 0;
+  transition: all 300ms ease-in-out;
 }
 
 .places__visible {
   display: block;
+  visibility: visible;
+  opacity: 1;
 }
+
 
 .places__profile {
   background-color: #fff;
