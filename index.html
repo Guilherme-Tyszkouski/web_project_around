@@ -51,104 +51,30 @@
           </button>
         </section>
         <section class="elements">
-          <ul class="elements__cards">
-            <!-- <li class="elements__card">
-              <img
-                src="./images/images-elements/elements-image-1.png"
-                alt="Rio passando no meio de arvores"
-                class="elements__card-image"
-              />
-              <div class="elements__card-info">
-                <p class="elements__card-name">Vale de Yosemite</p>
-                <img
-                  src="./images/images-elements/elements-like.svg"
-                  alt="Imagem de um coração"
-                  class="elements__card-button"
-                />
-              </div>
-            </li>
-            <li class="elements__card">
-              <img
-                src="./images/images-elements/elements-image-2.png"
-                alt="lago no meio de Montanhas"
-                class=".elements__card-image"
-              />
-              <div class="elements__card-info">
-                <p class="elements__card-name">Lago Louise</p>
-                <img
-                  src="./images/images-elements/elements-like.svg"
-                  alt="imagem de um coracao"
-                  class="elements__card-button"
-                />
-              </div>
-            </li>
-            <li class="elements__card">
-              <img
-                src="./images/images-elements/elements-image-3.png"
-                alt="Por do sol em altas montanhas"
-                class=".elements__card-image"
-              />
-              <div class="elements__card-info">
-                <p class="elements__card-name">Montanhas Care...</p>
-                <img
-                  src="./images/images-elements/elements-like.svg"
-                  alt="imagem de um coracao"
-                  class="elements__card-button"
-                />
-              </div>
-            </li>
-            <li class="elements__card">
-              <img
-                src="./images/images-elements/elements-image-4.png"
-                alt="Céu estrelado com montanhas cobertas de neve"
-                class=".elements__card-image"
-              />
-              <div class="elements__card-info">
-                <p class="elements__card-name">Latemar</p>
-                <img
-                  src="./images/images-elements/elements-like.svg"
-                  alt="imagem de um coracao"
-                  class="elements__card-button"
-                />
-              </div>
-            </li>
-            <li class="elements__card">
-              <img
-                src="./images/images-elements/elements-image-5.png"
-                alt="Lago com montanhas com neve no topo"
-                class=".elements__card-image"
-              />
-              <div class="elements__card-info">
-                <p class="elements__card-name">Parque Nacional...</p>
-                <img
-                  src="./images/images-elements/elements-like.svg"
-                  alt="imagem de um coracao"
-                  class="elements__card-button"
-                />
-              </div>
-            </li>
-            <li class="elements__card">
-              <img
-                src="./images/images-elements/elements-image-6.png"
-                alt="Altas montanhas com um lago, com uma ponte e varios barcos de madeira"
-                class=".elements__card-image"
-              />
-              <div class="elements__card-info">
-                <p class="elements__card-name">Lago di Braies</p>
-                <img
-                  src="./images/images-elements/elements-like.svg"
-                  alt="imagem de um coracao"
-                  class="elements__card-button"
-                />
-              </div>
-            </li> -->
-          </ul>
+          <ul class="elements__cards"></ul>
         </section>
       </main>
       <footer class="footer">
         <p class="footer__copyright">&copy; 2024 Around The U.S.</p>
       </footer>
     </div>
+
+    <template id="template">
+      <li class="elements__card" id="elements__card-parent">
+        <img src="" alt="" class="elements__card-image" />
+        <img src="" alt="" class="elements__card-button-trash" />
+        <div class="elements__card-info">
+          <p class="elements__card-name"></p>
+          <img
+            src=""
+            alt=""
+            class="elements__card-button"
+            data-like-states="inactive"
+          />
+        </div>
+      </li>
+    </template>
+
     <!-- Modal para editar perfil -->
     <div class="edit">
       <div class="edit__profile">
@@ -195,21 +121,20 @@
             <input
               type="text"
               class="form__input form__input_name"
-              id="newcardname"
+              id="title-new-card"
               placeholder="Título"
             />
             <input
               type="text"
               class="form__input form__input_about"
-              id="newcardlink"
+              id="link-new-card"
               placeholder="Link de imagem"
             />
           </fieldset>
           <button
             type="submit"
             class="form__submit"
-            id="addCardButton"
-            data-button="add-image"
+            id="submit-new-card-button"
           >
             Salvar
           </button>

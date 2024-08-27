@@ -1,65 +1,80 @@
-const DOM_editButtonProfile = document.querySelector(".profile__edit-button");
-const DOM_closeButtonProfile = document.querySelector(".edit__button-close");
-const DOM_editForm = document.querySelector(".edit");
-const DOM_formElement = document.querySelector(".form");
+const editButtonProfile = document.querySelector(".profile__edit-button");
+const closeButtonProfile = document.querySelector(".edit__button-close");
+const editForm = document.querySelector(".edit");
+const formElement = document.querySelector(".form");
 
-const DOM_editButtonPlaces = document.querySelector(".profile__add-image");
-const DOM_closeButtonPlaces = document.querySelector(".places__close");
-const DOM_placesForm = document.querySelector(".places");
-const DOM_placesFormElement = document.querySelector(".places__form");
-const DOM_elementsCards = document.querySelector(".elements__cards");
-const DOM_buttonAddImage = document.querySelector("[data-button=add-image]");
-const DOM_buttonLikedImage = document.querySelector(".elements__card-button");
+const addNewCardImage = document.querySelector(".profile__add-image");
+const closeButtonPlaces = document.querySelector(".places__close");
+const placesForm = document.querySelector(".places");
+const placesFormElement = document.querySelector(".places__form");
+const elementsCards = document.querySelector(".elements__cards");
+const buttonAddImage = document.querySelector("#submit-new-card-button");
+const buttonLikedImage = document.querySelector(".elements__card-button");
 
-const DOM_openExpanded = document.querySelector(".expanded"); // div grande
-const DOM_buttonCLoseExpandedImage = document.querySelector(".expanded__close"); //botao close
-const DOM_cardImages = document.querySelector(".elements__card-image"); // imagem cd cartao
-const DOM_expandedImage = document.querySelector(".expanded__image-open"); // imagem grande
-
-const DOM_formADDimage = document.querySelector("#form-add-image");
-const DOM__formAddImageUrl = document.querySelector("#newcardlink");
-const DOM__formAddImageTitle = document.querySelector("#newcardname");
-
-const DOM_initialCards = [
+const initialCards = [
   {
-    name: "Vale de Yosemite",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
-    alt: "Rio passando no meio de arvores",
+    nameImage: "Vale de Yosemite",
+    linkImage:
+      "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_yosemite.jpg",
+    altImage: "Rio passando no meio de arvores",
     trash: "../images/images-elements/elements-trash.svg",
+    trashAlt: "imagem de lixeira",
+    like: "../images/images-elements/elements-like.svg",
+    likeAlt: "Image de coração",
   },
   {
-    name: "Lago Louise",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
-    alt: "lago no meio de Montanhas",
+    nameImage: "Lago Louise",
+    linkImage:
+      "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lake-louise.jpg",
+    altImage: "lago no meio de Montanhas",
     trash: "../images/images-elements/elements-trash.svg",
+    trashAlt: "imagem de lixeira",
+    like: "../images/images-elements/elements-like.svg",
+    likeAlt: "Image de coração",
   },
   {
-    name: "Montanhas Carecas",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg",
-    alt: "Por do sol em altas montanhas",
+    nameImage: "Montanhas Carecas",
+    linkImage:
+      "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_bald-mountains.jpg",
+    altImage: "Por do sol em altas montanhas",
     trash: "../images/images-elements/elements-trash.svg",
+    trashAlt: "imagem de lixeira",
+    like: "../images/images-elements/elements-like.svg",
+    likeAlt: "Image de coração",
   },
   {
-    name: "Latemar",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg",
-    alt: "Céu estrelado com montanhas cobertas de neve",
+    nameImage: "Latemar",
+    linkImage:
+      "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_latemar.jpg",
+    altImage: "Céu estrelado com montanhas cobertas de neve",
     trash: "../images/images-elements/elements-trash.svg",
+    trashAlt: "imagem de lixeira",
+    like: "../images/images-elements/elements-like.svg",
+    likeAlt: "Image de coração",
   },
   {
-    name: "Parque Nacional da Vanoise ",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg",
-    alt: "Lago com montanhas com neve no topo",
+    nameImage: "Parque Nacional da Vanoise ",
+    linkImage:
+      "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_vanoise.jpg",
+    altImage: "Lago com montanhas com neve no topo",
     trash: "../images/images-elements/elements-trash.svg",
+    trashAlt: "imagem de lixeira",
+    like: "../images/images-elements/elements-like.svg",
+    likeAlt: "Image de coração",
   },
   {
-    name: "Lago di Braies",
-    link: "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
-    alt: "Altas montanhas com um lago, com uma ponte e varios barcos de madeira",
+    nameImage: "Lago di Braies",
+    linkImage:
+      "https://practicum-content.s3.us-west-1.amazonaws.com/web-code/moved_lago.jpg",
+    altImage:
+      "Altas montanhas com um lago, com uma ponte e varios barcos de madeira",
     trash: "../images/images-elements/elements-trash.svg",
+    trashAlt: "imagem de lixeira",
+    like: "../images/images-elements/elements-like.svg",
+    likeAlt: "Image de coração",
   },
 ];
 
-//funcao do pop up
 function handleProfileFormSubmit(event) {
   event.preventDefault();
   const nameInput = document.querySelector(".form__input_name");
@@ -83,205 +98,132 @@ function handleProfileFormSubmit(event) {
   alert("Dados editados com sucesso!");
   nameInput.value = "";
   jobInput.value = "";
-  DOM_editForm.classList.remove("edit__visible");
+  editForm.classList.remove("edit__visible");
 }
 
-//funcao que carrega as imagens inicias
+function createCard(card) {
+  const template = document.querySelector("#template").content;
+  const cardItem = template.querySelector(".elements__card").cloneNode(true);
 
-// function* generateIdCards() {
-//   let id = 0;
-//   while (true) {
-//     yield id;
-//     id += 1;
-//   }
-// }
+  cardItem
+    .querySelector(".elements__card-image")
+    .setAttribute("src", card.linkImage);
 
-// const iteradorId = generateIdCards();
+  cardItem
+    .querySelector(".elements__card-image")
+    .setAttribute("alt", card.altImage);
 
-// // Função que cria os cartoes inicias da pagina
+  cardItem
+    .querySelector(".elements__card-button-trash")
+    .setAttribute("src", card.trash);
 
-// function createCards() {
-//   DOM_elementsCards.innerHTML = "";
+  cardItem
+    .querySelector(".elements__card-button-trash")
+    .setAttribute("alt", card.trashAlt);
 
-//   DOM_initialCards.forEach((obj, index) => {
-//     const li_tag = document.createElement("li");
-//     li_tag.classList.add("elements__card");
-//     li_tag.setAttribute("data-id", index);
+  cardItem.querySelector(".elements__card-name").textContent = card.nameImage;
 
-//     const img_tag = document.createElement("img");
-//     img_tag.setAttribute("src", obj.link);
-//     img_tag.setAttribute("alt", obj.alt);
-//     img_tag.classList.add("elements__card-image");
+  cardItem
+    .querySelector(".elements__card-button") // botao like
+    .setAttribute("src", card.like);
 
-//     const imgTrash_tag = document.createElement("img");
-//     imgTrash_tag.setAttribute("src", obj.trash);
-//     imgTrash_tag.setAttribute("alt", obj.alt);
-//     imgTrash_tag.classList.add("elements__card-button-trash");
+  cardItem
+    .querySelector(".elements__card-button") // botao like
+    .setAttribute("alt", card.likeAlt);
 
-//     const div_tag = document.createElement("div");
-//     div_tag.classList.add("elements__card-info");
+  cardItem
+    .querySelector(".elements__card-button-trash")
+    .addEventListener("click", function (event) {
+      const cardItemParent = event.target.parentElement;
 
-//     const p_tag = document.createElement("p");
-//     p_tag.classList.add("elements__card-name");
-//     p_tag.textContent = obj.name;
+      if (cardItemParent.getAttribute("id") === "elements__card-parent") {
+        cardItemParent.remove();
+      }
+    });
 
-//     const imgLike_tag = document.createElement("img");
-//     imgLike_tag.setAttribute(
-//       "src",
-//       "../images/images-elements/elements-like.svg"
-//     );
-//     imgLike_tag.setAttribute("alt", obj.alt);
-//     imgLike_tag.setAttribute("data-id", iteradorId.next().value);
-//     imgLike_tag.setAttribute("like-states", "inactive");
-//     imgLike_tag.classList.add("elements__card-button");
+  cardItem
+    .querySelector(".elements__card-button")
+    .addEventListener("click", function (event) {
+      const target = event.target;
+      if (target.dataset.likeStates === "inactive") {
+        target.setAttribute(
+          "src",
+          "../images/images-elements/elements-like-active.svg"
+        );
+        target.setAttribute("data-like-states", "active");
+      } else {
+        target.setAttribute(
+          "src",
+          "../images/images-elements/elements-like.svg"
+        );
+        target.setAttribute("data-like-states", "inactive");
+      }
+    });
 
-//     li_tag.appendChild(img_tag);
-//     li_tag.appendChild(imgTrash_tag);
-//     li_tag.appendChild(div_tag);
-//     div_tag.appendChild(p_tag);
-//     div_tag.appendChild(imgLike_tag);
+  return cardItem;
+}
 
-//     DOM_elementsCards.appendChild(li_tag);
-//   });
-// }
+function addNewCard() {
+  const imageName = document.querySelector("#title-new-card");
+  const imageLink = document.querySelector("#link-new-card");
 
-// function creatIndividualCard(event) {
-//   event.preventDefault();
-//   const imageTitleValue = DOM__formAddImageTitle.value.trim();
-//   const imageUrlValue = DOM__formAddImageUrl.value.trim();
-//   const isEmptyimageTitleValue = imageTitleValue.length === 0;
-//   const isEmptyimageUrlValue = imageUrlValue.length === 0;
+  const imageNameValue = imageName.value.trim();
+  const imageLinkValue = imageLink.value.trim();
 
-//   if (isEmptyimageTitleValue || isEmptyimageUrlValue) {
-//     alert("Preencha todos os campos!");
-//     return;
-//   }
+  const isEmptimageNameValue = imageNameValue.length === 0;
+  const isEmptyimageLinkValue = imageLinkValue.length === 0;
 
-//   const li_tag = document.createElement("li");
-//   li_tag.classList.add("elements__card");
+  if (isEmptimageNameValue || isEmptyimageLinkValue) {
+    alert("Preencha todos os campos!");
+    return;
+  }
 
-//   const img_tag = document.createElement("img");
-//   img_tag.setAttribute("src", imageUrlValue);
-//   img_tag.setAttribute("alt", "Imagem Aleatoria");
-//   img_tag.classList.add("elements__card-image");
+  const card = {
+    nameImage: imageNameValue,
+    linkImage: imageLinkValue,
+    altImage: imageNameValue,
+    trash: "../images/images-elements/elements-trash.svg",
+    trashAlt: "imagem de lixeira",
+    like: "../images/images-elements/elements-like.svg",
+    likeAlt: "Image de coração",
+  };
 
-//   const imgTrash_tag = document.createElement("img");
-//   imgTrash_tag.setAttribute(
-//     "src",
-//     "../images/images-elements/elements-trash.svg"
-//   );
-//   imgTrash_tag.setAttribute("alt", "Lixeira");
-//   imgTrash_tag.classList.add("elements__card-button-trash");
+  const newCard = createCard(card);
+  elementsCards.prepend(newCard);
 
-//   const div_tag = document.createElement("div");
-//   div_tag.classList.add("elements__card-info");
-//   const p_tag = document.createElement("p");
-//   p_tag.classList.add("elements__card-name");
-//   p_tag.textContent = imageTitleValue;
+  imageName.value = "";
+  imageLink.value = "";
 
-//   const imgLike_tag = document.createElement("img");
-//   imgLike_tag.setAttribute(
-//     "src",
-//     "../images/images-elements/elements-like.svg"
-//   );
-//   imgLike_tag.setAttribute("alt", "Imagem de coração");
-//   imgLike_tag.setAttribute("data-id", iteradorId.next().value);
-//   imgLike_tag.setAttribute("like-states", "inactive");
-//   imgLike_tag.classList.add("elements__card-button");
+  placesForm.classList.remove("places__visible");
+}
 
-//   li_tag.appendChild(imgTrash_tag);
-//   li_tag.appendChild(img_tag);
-//   li_tag.appendChild(div_tag);
-//   div_tag.appendChild(p_tag);
-//   div_tag.appendChild(imgLike_tag);
-
-//   DOM_elementsCards.prepend(li_tag);
-//   DOM__formAddImageTitle.value = "";
-//   DOM__formAddImageUrl.value = "";
-// }
-
-// // Remover e dar like nas imagens
-
-// const removeImage = (target) => {
-//   if (!(target.className === "elements__card-button-trash")) return;
-
-//   const altAttributeTarget = target.getAttribute("alt");
-
-//   const cards = document.querySelectorAll(".elements__card");
-
-//   cards.forEach((li) => {
-
-
-
-//     if (li.childNodes.item("img").getAttribute("alt") === altAttributeTarget) {
-//       li.style.transition = "all 300ms ease-in-out";
-//       li.style.opacity = "0";
-//       setTimeout(() => li.remove(), 500);
-//     }
-//   });
-// };
-
-// const likeImage = (target) => {
-//   const clikedTargetId = target.dataset.id;
-//   const likes = document.querySelectorAll("[data-id]");
-//   likes.forEach((like) => {
-//     if (like.dataset.id === clikedTargetId) {
-//       if (like.getAttribute("like-states") === "inactive") {
-//         like.setAttribute(
-//           "src",
-//           "../images/images-elements/elements-like-active.svg"
-//         );
-//         like.setAttribute("like-states", "active");
-//       } else {
-//         like.setAttribute("src", "../images/images-elements/elements-like.svg");
-//         like.setAttribute("like-states", "inactive");
-//       }
-//     }
-//   });
-// };
-
-//Botao adicionar imagem
-
-DOM_formADDimage.addEventListener("submit", (event) => {
-  creatIndividualCard(event);
+buttonAddImage.addEventListener("click", function (event) {
+  event.preventDefault();
+  addNewCard();
 });
 
-DOM_buttonAddImage.addEventListener("submit", (event) => nomefuncao(event));
-
-// Modal Section Profile
-
-DOM_formElement.addEventListener("submit", (event) =>
+formElement.addEventListener("submit", (event) =>
   handleProfileFormSubmit(event)
 );
 
-DOM_editButtonProfile.addEventListener("click", () => {
-  DOM_editForm.classList.add("edit__visible");
+editButtonProfile.addEventListener("click", () => {
+  editForm.classList.add("edit__visible");
 });
 
-DOM_closeButtonProfile.addEventListener("click", () => {
-  DOM_editForm.classList.remove("edit__visible");
+closeButtonProfile.addEventListener("click", () => {
+  editForm.classList.remove("edit__visible");
 });
 
-DOM_editButtonPlaces.addEventListener("click", () => {
-  DOM_placesForm.classList.add("places__visible");
+addNewCardImage.addEventListener("click", () => {
+  placesForm.classList.add("places__visible");
 });
 
-DOM_closeButtonPlaces.addEventListener("click", () => {
-  DOM_placesForm.classList.remove("places__visible");
+closeButtonPlaces.addEventListener("click", () => {
+  placesForm.classList.remove("places__visible");
 });
 
-DOM_buttonCLoseExpandedImage.addEventListener("click", () => {
-  DOM_expandedImage.classList.remove("expanded__visible");
+window.addEventListener("DOMContentLoaded", function () {
+  initialCards.forEach(function (card) {
+    elementsCards.appendChild(createCard(card));
+  });
 });
-
-// Event listener para detectar clique em qualquer lugar do documento
-
-// window.addEventListener("click", (event) => {
-//   const target = event.target;
-//   removeImage(target);
-//   likeImage(target);
-// });
-
-// Carregar as imagens iniciais ao carregar a página
-
-// window.addEventListener("DOMContentLoaded", createCards);
