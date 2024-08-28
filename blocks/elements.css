@@ -20,6 +20,13 @@
   position: relative;
 }
 
+.elements__card-delete,
+.elements__card_like {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 300ms ease-in-out;
+}
+
 
 
 .elements__card-image {
@@ -62,11 +69,10 @@
   cursor: pointer;
 }
 
-
 .elements__card-button:active {
-  background-image: url(../images/images-elements/elements-like-active.svg) center no-repeat;
+  background-image: url(../images/images-elements/elements-like-active.svg)
+    center no-repeat;
 }
-
 
 .elements__card-button-trash {
   width: 18px;
