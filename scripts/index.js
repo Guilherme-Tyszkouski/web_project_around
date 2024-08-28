@@ -11,6 +11,9 @@ const elementsCards = document.querySelector(".elements__cards");
 const buttonAddImage = document.querySelector("#submit-new-card-button");
 const buttonLikedImage = document.querySelector(".elements__card-button");
 
+const modalExpanded = document.querySelector(".expanded");
+const expandedButtonCLose = document.querySelector(".expanded__close");
+
 const initialCards = [
   {
     nameImage: "Vale de Yosemite",
@@ -101,6 +104,18 @@ function handleProfileFormSubmit(event) {
   editForm.classList.remove("edit__visible");
 }
 
+function imageLike(target) {
+  target.style.visibility = "hidden";
+  target.style.opacity = "0";
+  target.style.transition = "all 300ms ease-in-out";
+}
+
+function imageDislike(target) {
+  target.style.visibility = "visible";
+  target.style.opacity = "1";
+  target.style.transition = "all 300ms ease-in-out";
+}
+
 function createCard(card) {
   const template = document.querySelector("#template").content;
   const cardItem = template.querySelector(".elements__card").cloneNode(true);
@@ -137,7 +152,10 @@ function createCard(card) {
       const cardItemParent = event.target.parentElement;
 
       if (cardItemParent.getAttribute("id") === "elements__card-parent") {
-        cardItemParent.remove();
+        cardItemParent.classList.add("elements__card-delete");
+        setTimeout(function () {
+          cardItemParent.remove();
+        }, 400);
       }
     });
 
@@ -146,20 +164,55 @@ function createCard(card) {
     .addEventListener("click", function (event) {
       const target = event.target;
       if (target.dataset.likeStates === "inactive") {
-        target.setAttribute(
-          "src",
-          "../images/images-elements/elements-like-active.svg"
-        );
+        imageLike(target);
+
+        setTimeout(() => {
+          imageDislike(target);
+
+          target.setAttribute(
+            "src",
+            "../images/images-elements/elements-like-active.svg"
+          );
+        }, 400);
+
         target.setAttribute("data-like-states", "active");
       } else {
-        target.setAttribute(
-          "src",
-          "../images/images-elements/elements-like.svg"
-        );
+        imageLike(target);
+
+        setTimeout(() => {
+          imageDislike(target);
+
+          target.setAttribute(
+            "src",
+            "../images/images-elements/elements-like.svg"
+          );
+        }, 400);
+
         target.setAttribute("data-like-states", "inactive");
       }
     });
 
+  cardItem
+    .querySelector(".elements__card-image")
+    .addEventListener("click", function (event) {
+      const src = cardItem.querySelector(".elements__card-image").src;
+      const alt = cardItem.querySelector(".elements__card-image").alt;
+      const textContent = cardItem.querySelector(
+        ".elements__card-name"
+      ).textContent;
+      modalExpanded.classList.add("expanded__visible");
+
+      modalExpanded
+        .querySelector(".expanded__image-open")
+        .setAttribute("src", src);
+
+      modalExpanded
+        .querySelector(".expanded__image-open")
+        .setAttribute("alt", alt);
+
+      modalExpanded.querySelector(".expanded__paragraph-info").textContent =
+        textContent;
+    });
   return cardItem;
 }
 
@@ -220,6 +273,10 @@ addNewCardImage.addEventListener("click", () => {
 
 closeButtonPlaces.addEventListener("click", () => {
   placesForm.classList.remove("places__visible");
+});
+
+expandedButtonCLose.addEventListener("click", function () {
+  modalExpanded.classList.remove("expanded__visible");
 });
 
 window.addEventListener("DOMContentLoaded", function () {
