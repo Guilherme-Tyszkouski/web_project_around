@@ -12,7 +12,7 @@ const buttonAddImage = document.querySelector("#submit-new-card-button");
 const buttonLikedImage = document.querySelector(".elements__card-button");
 
 const modalExpanded = document.querySelector(".expanded");
-const expandedButtonCLose = document.querySelector(".expanded__close");
+const expandedButtonCLose = document.querySelector(".expanded__close-button");
 
 const initialCards = [
   {
